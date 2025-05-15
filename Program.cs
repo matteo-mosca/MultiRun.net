@@ -24,11 +24,35 @@ class Program
     {
         var displays = new[]{
             new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
-            new Display(Display.AnsiForeground.white, Display.AnsiBackground.red),
-            new Display(Display.AnsiForeground.white, Display.AnsiBackground.green),
-            new Display(Display.AnsiForeground.white, Display.AnsiBackground.purple),
-            new Display(Display.AnsiForeground.white, Display.AnsiBackground.black),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
+            new Display(Display.AnsiForeground.white, Display.AnsiBackground.blue),
         };
+
         for (int i = 0; i < projects.Count; i++)
         {
             yield return new Shell(projects.ElementAt(i), displays.ElementAt(i));
@@ -41,15 +65,14 @@ class Program
 
         try
         {
-            foreach (string file in Directory.GetFiles(directory, "*.csproj"))
+            foreach (string file in Directory.GetFiles(directory, "*Api.csproj", new EnumerationOptions { RecurseSubdirectories = true }))
             {
-                txtFilePaths.Add(file);
-            }
+                if (file.Contains("Shared"))
+                {
+                    continue;
+                }
 
-            foreach (string subdirectory in Directory.GetDirectories(directory))
-            {
-                List<string> subdirectoryFiles = SearchProjectsFiles(subdirectory);
-                txtFilePaths.AddRange(subdirectoryFiles);
+                txtFilePaths.Add(file);
             }
         }
         catch (Exception e)

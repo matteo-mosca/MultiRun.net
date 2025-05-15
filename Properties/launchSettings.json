@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "mrn": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\sourcecode\\eslp\\ABB.S360"
+    }
+  }
+}

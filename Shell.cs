@@ -17,12 +17,16 @@ class Shell
 
     public async Task StartShell()
     {
+        Console.WriteLine($"Starting shell for {FileLocation}");
         ProcessStartInfo info = new ProcessStartInfo();
         info.FileName = "/bin/bash";
+        info.Arguments = $"-c \"dotnet run --project '{FileLocation}' --launch-profile https\"";
+
         if (this.isWindows){
             info.FileName = "cmd.exe";
+            info.Arguments = $"/c dotnet run --project {FileLocation} --launch-profile https";
         }
-        info.Arguments = $"-c \"dotnet run --project '{FileLocation}'\"";
+        
         info.RedirectStandardOutput = true;
         info.UseShellExecute = false;
 
